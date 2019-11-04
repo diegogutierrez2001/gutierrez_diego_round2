@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="main">
+  	<div class="container">
+  		<div class="row">
+		    {% for post in posts %}
+		    	<div class="col-lg-4 col-md-6 col-sm-12">
+			    	<div class="jumbotron">
+				    	<article>
+				    		<h3>{{ post.title }}</h3>
+				    		<p>{{ post.author }}</p>
+				    		<p>{{ post.body }}</p>
+				    	</article>
+				    </div>
+				</div>
+		    {% endfor %}
+		</div>
+	</div>
+  </div>
+{% endblock %}

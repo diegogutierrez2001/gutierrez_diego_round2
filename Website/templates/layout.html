@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href='/static/test.css' />
+
+
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title>Davidbook</title>
+    {% endif %}
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="{{ url_for('main') }}"><h1>Davidbook</h1></a>
+          {% if loggedin %}
+            <a href="{{ url_for('post') }}">Create Post</a>
+<!--             <a href="{{ username }}" class="login right">Logout</a>
+ -->          {% else %}
+            <a href="{{ url_for('login') }}" class="login right">Login</a>
+          {% endif %}
+        </nav>
+        {% if loggedin %}
+          <p>Welcome {{ username }}</p>
+        {% endif %}
+      </div>
+    </header>
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

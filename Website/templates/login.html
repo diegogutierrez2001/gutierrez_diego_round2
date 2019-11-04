@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="login">
+	<div class="jumbotron">
+		<form method="POST", action="">
+			<fieldset class="form-group">
+				{{ form.hidden_tag() }}
+				<dir>
+					{{ form.username.label(class="form-control-label") }}
+					{{ form.username(class="form-control form-control-lg") }}
+				</dir>
+				<dir class="form-group">
+					{{ form.password.label(class="form-control-label") }}
+					{{ form.password(class="form-control form-control-lg") }}
+				</dir>
+			</fieldset>
+			<dir class="form-group">
+				{{ form.submit(class="btn btn-primary") }}
+			</dir>
+		</form>
+	</div>
+</div>
+{% endblock %}

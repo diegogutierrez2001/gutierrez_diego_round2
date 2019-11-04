@@ -1,0 +1,19 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, Length, EqualTo
+
+class RegistrationForm(FlaskForm):
+	username = StringField('Username', validators=[DataRequired(), Length(min = 2, max = 20)])
+	password = PasswordField('Password', validators=[DataRequired()])
+	confirm_password = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
+	submit = SubmitField('Sign Up')
+
+class LoginForm(FlaskForm):
+	username = StringField('Username', validators=[DataRequired(), Length(min = 2, max = 20)])
+	password = PasswordField('Password', validators=[DataRequired()])
+	submit = SubmitField('Login')
+
+class PostForm(FlaskForm):
+	title = StringField('Title', validators=[DataRequired(), Length(max = 20)])
+	body = TextAreaField('Body', validators=[DataRequired(), Length(min = 50, max = 300)])
+	submit = SubmitField('Post')
